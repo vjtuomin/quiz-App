@@ -1,0 +1,32 @@
+<% layout("./layouts/layout.eta") %>
+
+
+<h1>Quiz app</h1>
+<p> On quiz app you can create questions or answer questions created by other users<p>
+<p>If you haven't used the application before, you can start by <a href="/auth/register">registering</a>. If you have been here before, just <a href="/auth/login">log in</a>!</p>
+
+<div class="container-fluid bg-info" >
+<div class="card bg-light" style="width: 22rem;">
+  <div class="card-body">
+    <h5 class="card-title">Quiz</h5>
+    <p class="card-text">On Quiz page you can answer questions created by all users</p>
+    <a href="/quiz" class="card-link"> Quiz page</a>
+  </div>
+</div>
+<div class="card bg-light" style="width: 22rem;">
+  <div class="card-body">
+    <h5 class="card-title">Adding questions</h5>
+    <p class="card-text">You can create your own quiz questions on Add questions page</p>
+    <a href="/questions" class="card-link"> Add questions page</a>
+  </div>
+</div>
+<div class="card bg-light" style="width: 22rem;">
+  <div class="card-body">
+    <h5 class="card-title">Statistics</h5>
+    <p class="card-text">On Statistics page you can see your own statistics and top users</p>
+    <a href="/statistics" class="card-link"> Statistics page</a>
+  </div>
+</div>
+
+
+</div>

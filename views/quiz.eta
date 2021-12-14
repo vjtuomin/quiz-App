@@ -1,0 +1,34 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1><%=it.question.title%></h1>
+
+<h2><%=it.question.question_text%></h2>
+
+<% if (it.options.length == 0) { %>
+<a href="/quiz">Next question</a>
+<% } %>
+
+
+
+<h2>Answers</h2>
+<table class="table">
+
+<% it.options.forEach((option) => { %>
+ 
+ <tr>
+  <th>
+ <%= option.option_text %>
+  </th>
+  <th>
+  <form method="POST" action="/quiz/<%= it.question.id %>/options/<%=option.id%>/">
+  <input type="submit" value="Choose" />
+  </th>
+</tr>
+<% }); %>
+</table>
+
+<footer>
+<a href="/">Back to main page</a>
+</footer>
+
+

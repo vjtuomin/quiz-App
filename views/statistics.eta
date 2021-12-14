@@ -1,0 +1,31 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Statistics!</h1>
+
+<h2>Your statistics</h2>
+
+<table class="table">
+<tr><th>Answers</th><th>Correct Answers</th></tr>
+</tr>
+<% it.answers.forEach(stat => { %>
+<td><%= stat.count %></td>
+<% }) %>
+<% it.rightAnswers.forEach(stat => { %>
+<td><%= stat.count %></td>
+<% }) %>
+</tr>
+</table>
+
+
+<h2>Most Answers</h2>
+
+<table class="table">
+<tr><th>User</th><th>Answers</th></tr>
+<% it.mostAnswers.forEach(stat => { %>
+<tr><td><%= stat.email %></td><td><%= stat.count %></td></tr>
+<% }) %>
+</table>
+
+<footer>
+<a href="/">Back to main page</a>
+</footer>

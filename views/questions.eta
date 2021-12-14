@@ -1,0 +1,36 @@
+<% layout("./layouts/layout.eta") %>
+
+<h1>Questions</h1>
+<% if (it.validationErrors) { %>
+<ul>
+    <% Object.keys(it.validationErrors).forEach((attribute) => { %>
+        <% Object.values(it.validationErrors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<h2>Add a question</h2>
+
+<form method="POST" action="/questions">
+  Title: <input type="text" name="title" value="<%= it.title ? it.title : "" %>"/>
+  Question: <input type="text" name="question" value="<%= it.question ? it.question : "" %>"/>
+  <input type="submit" value="Create Question!"/>
+</form>
+
+<h2>All Questions</h2>
+<table>
+
+<% it.questions.forEach((question) => { %>
+ <tr>
+  <th>
+  <a href="/questions/<%= question.id %>"><%= question.title %></a>
+  </th>
+</tr>
+<% }); %>
+</table>
+
+<footer>
+<a href="/">Back to main page</a>
+</footer>
