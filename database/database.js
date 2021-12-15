@@ -2,11 +2,11 @@ import { Pool } from "../deps.js";
 
 const CONCURRENT_CONNECTIONS = 2;
 const connectionPool = new Pool({
-  hostname: ${{secrets.DATABASE_HOSTNAME}},
-  database: ${{secrets.DATABASE_DATABASE}},
-  user: ${{secrets.DATABASE_USER}},
-  password: ${{secrets.DATABASE_PASSWORD}},
-  port: ${{secrets.DATABASE_PORT}},
+  hostname: `${{secrets.DATABASE_HOSTNAME}}`,
+  database: `${{secrets.DATABASE_DATABASE}}`,
+  user:`${{secrets.DATABASE_USER}}`,
+  password: `${{secrets.DATABASE_PASSWORD}}`,
+  port: `${{secrets.DATABASE_PORT}}`,
 }, CONCURRENT_CONNECTIONS);
 
 const executeQuery = async (query, ...args) => {
