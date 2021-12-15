@@ -2,11 +2,11 @@ import { Pool } from "../deps.js";
 
 const CONCURRENT_CONNECTIONS = 2;
 const connectionPool = new Pool({
-  hostname: `${{secrets.DATABASE_HOSTNAME}}`,
-  database: `${{secrets.DATABASE_DATABASE}}`,
-  user:`${{secrets.DATABASE_USER}}`,
-  password: `${{secrets.DATABASE_PASSWORD}}`,
-  port: `${{secrets.DATABASE_PORT}}`,
+  hostname: "abul.db.elephantsql.com",
+  database: "utchibvk",
+  user: "utchibvk",
+  password: "iiF78r4SPWTZ2WkOKbmWmm0TuEbJBN_K",
+  port: 5432,
 }, CONCURRENT_CONNECTIONS);
 
 const executeQuery = async (query, ...args) => {
