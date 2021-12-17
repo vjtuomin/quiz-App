@@ -20,6 +20,9 @@
  <%= option.option_text %>
   </th>
   <th>
+  <%= option.id %>
+  </th>
+  <th>
   <form method="POST" action="/quiz/<%= it.question.id %>/options/<%=option.id%>/">
   <input type="submit" value="Choose" />
   </th>

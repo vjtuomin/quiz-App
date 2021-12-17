@@ -120,7 +120,7 @@ const deleteOption = async ({ params, response }) => {
 const deleteQuestion = async ({ params, response }) => {
   const questionId = params.id;
   await questionService.deleteQuestion(questionId);
-  response.redirect(`/questions/`);
+  response.redirect(`/questions`);
 };
 
 const getQuestion = async ({ params, render }) => {

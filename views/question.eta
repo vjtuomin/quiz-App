@@ -40,6 +40,9 @@
  <%= option.option_text %>
   </th>
   <th>
+  <%= option.id %>
+  </th>
+  <th>
   <form method="POST" action="/questions/<%= option.question_id %>/options/<%=option.id%>/delete">
   <input type="submit" value="Remove" />
   </th>
