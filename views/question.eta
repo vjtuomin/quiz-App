@@ -36,19 +36,23 @@
 
 <% it.options.forEach((option) => { %>
  <tr>
-  <th>
+ <th>
  <%= option.option_text %>
-  </th>
-  <th>
-  <%= option.id %>
-  </th>
+ <% if (option.is_correct) { %>
+ <th>correct</th>
+ <% } else { %>
+ <th>incorrect</th>
+ <%} %>
+ 
   <th>
   <form method="POST" action="/questions/<%= option.question_id %>/options/<%=option.id%>/delete">
   <input type="submit" value="Remove" />
+  </form>
   </th>
-</tr>
+ </tr>
 <% }); %>
 </table>
+
  
 
 
