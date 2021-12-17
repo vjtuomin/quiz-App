@@ -23,12 +23,13 @@ Deno.test({
   sanitizeResources: false,
   sanitizeOps: false,
 });
+
 Deno.test({
   name: "POST to /api/questions/answer should return a json document",
   async fn() {
     const testClient = await superoak(app);
     await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 59 })
+      .send({ questionId: 50, optionId: 79 })
       .expect(200)
       .expect("Content-Type", new RegExp("application/json"));
   },
@@ -41,7 +42,7 @@ Deno.test({
   async fn() {
     const testClient = await superoak(app);
     const response = await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 59 })
+      .send({ questionId: 50, optionId: 79 })
       .expect(200)
       .expect("Content-Type", new RegExp("application/json"));
     const value = response.body;
@@ -56,22 +57,7 @@ Deno.test({
   async fn() {
     const testClient = await superoak(app);
     const response = await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 61 })
-      .expect(200)
-      .expect("Content-Type", new RegExp("application/json"));
-    const value = response.body;
-    assertMatch(value.correct, new RegExp("false"));
-  },
-  sanitizeResources: false,
-  sanitizeOps: false,
-});
-
-Deno.test({
-  name: "POST to /api/questions/answer should return a false",
-  async fn() {
-    const testClient = await superoak(app);
-    const response = await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 60 })
+      .send({ questionId: 50, optionId: 81 })
       .expect(200)
       .expect("Content-Type", new RegExp("application/json"));
     const value = response.body;
