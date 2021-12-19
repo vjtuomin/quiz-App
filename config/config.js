@@ -8,6 +8,4 @@ config.database = {
   port: 5432,
 };
 
-console.log(config.database);
-
 export { config };

@@ -25,7 +25,7 @@ router.post("/auth/login", loginController.processLogin);
 router.get("/quiz", questionController.randomQuestion);
 router.get("/quiz/:id", questionController.getQuestion);
 router.post(
-  "/quiz/:questionid/options/:optionId/",
+  "/quiz/:questionid/options/:optionId",
   questionController.getAnswer,
 );
 router.get(
