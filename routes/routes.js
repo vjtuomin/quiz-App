@@ -12,7 +12,7 @@ router.get("/", mainController.showMain);
 router.get("/questions", questionController.showQuestions);
 router.post("/questions", questionController.addQuestion);
 router.get("/questions/:id", questionController.showQuestion);
-router.post("/questions/:id", questionController.addOption);
+router.post("/questions/:id/options", questionController.addOption);
 router.post("/questions/:id/delete", questionController.deleteQuestion);
 router.post(
   "/questions/:questionid/options/:optionId/delete",
@@ -27,6 +27,14 @@ router.get("/quiz/:id", questionController.getQuestion);
 router.post(
   "/quiz/:questionid/options/:optionId/",
   questionController.getAnswer,
+);
+router.get(
+  "/quiz/:id/correct",
+  questionController.showCorrect,
+);
+router.get(
+  "/quiz/:id/incorrect",
+  questionController.showIncorrect,
 );
 router.get("/statistics", statisticsController.showStatistics);
 router.get("/api/questions/random", questionApi.randomQuestion);

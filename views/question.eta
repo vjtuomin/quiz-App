@@ -23,7 +23,7 @@
 
 <h2>Add an answer</h2>
 
-<form method="POST" action="/questions/<%=it.question.id %>">
+<form method="POST" action="/questions/<%=it.question.id %>/options">
   Answer: <input type="textfield" name="option_text" />
   Is answer correct?: <input type="checkbox" name="is_correct"/>
   <input type="submit" value="Create Answer!" />

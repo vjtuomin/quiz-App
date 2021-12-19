@@ -20,7 +20,7 @@ const getQuestionData = async (request) => {
     const params = await body.value;
 
     data.title = params.get("title");
-    data.question = params.get("question");
+    data.question = params.get("question_text");
   }
   return data;
 };
@@ -35,6 +35,9 @@ const getOptionData = async (request) => {
     const params = await body.value;
     data.optionText = params.get("option_text");
     data.iscorrect = params.get("is_correct");
+    if (!data.iscorrect) {
+      data.iscorrect = false;
+    }
   }
   return data;
 };
@@ -138,25 +141,31 @@ const randomQuestion = async ({ response }) => {
   const id = obj.id;
   response.redirect(`/quiz/${id}`);
 };
-const getAnswer = async ({ params, render, user }) => {
+const getAnswer = async ({ params, response, user }) => {
   const obj = await questionService.getCorrect(params.questionid);
   const correct = obj.option_text;
   const res = await questionService.findAnswer(params.optionId);
   const answer = res.option_text;
   if (answer == correct) {
-    const data = {
-      result: "correct",
-    };
     await questionService.addAnswer(user.id, params.id, params.optionId, true);
-    render("answer.eta", data);
+    response.redirect(`/quiz/${params.questionid}/correct`);
   } else {
-    const data = {
-      result: "incorrect",
-      correct: correct,
-    };
     await questionService.addAnswer(user.id, params.id, params.optionId, false);
-    render("answer.eta", data);
+    response.redirect(`/quiz/${params.questionid}/incorrect`);
   }
+};
+
+const showCorrect = ({ render }) => {
+  render("correct.eta");
+};
+
+const showIncorrect = async ({ params, render }) => {
+  const obj = await questionService.getCorrect(params.id);
+  const correct = obj.option_text;
+  const data = {
+    correct: correct,
+  };
+  render("incorrect.eta", data);
 };
 
 export {
@@ -167,6 +176,8 @@ export {
   getAnswer,
   getQuestion,
   randomQuestion,
+  showCorrect,
+  showIncorrect,
   showQuestion,
   showQuestions,
 };
