@@ -30,3 +30,8 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APPLICATION_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL_ADDRESS}}
+        env:
+          HD_PGHOST: ${{secrets.DATABASE_HOSTNAME}}
+          HD_PGDATABASE: ${{secrets.DATABASE_DATABASE}}
+          HD_PGPASSWORD: ${{secrets.DATABASE_PASSWORD}}
+          
