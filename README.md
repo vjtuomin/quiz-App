@@ -42,7 +42,9 @@ config.database = { hostname: database: user: password: port: };
 
    5. Open browser and go to http://localhost:7777/
 
-## Running the tests: Change id:s in the tests in to match existing id:s in your
+## Running the tests:
+
+Change id:s in the tests in to match existing id:s in your
 
 own database
 
