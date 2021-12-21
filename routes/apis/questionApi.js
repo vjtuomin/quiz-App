@@ -7,14 +7,17 @@ const randomQuestion = async ({ response }) => {
   const res2 = await questionService.findOptions(id);
   const question = res.rows[0];
   const options = res2.rows;
+
   const data = {
     questionId: id,
     questionTitle: question.title,
     questionText: question.question_text,
     answerOptions: { options },
   };
-
-  response.body = data;
+  if (data != null) {
+    response.body = data;
+  }
+  response.body = JSON.parse("{}");
 };
 
 const getAnswer = async ({ request, response }) => {

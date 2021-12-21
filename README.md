@@ -2,8 +2,9 @@ How to run the application locally:
 
 1.Download and unzip the zip file
 
-2. Change the database configurations in database.js const
-   CONCURRENT_CONNECTIONS = 2; const connectionPool = new Pool({
+2. Change the database configurations in config.js
+
+config.database = { hostname: database: user: password: port: };
 
 }, CONCURRENT_CONNECTIONS);
 
