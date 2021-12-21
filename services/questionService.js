@@ -54,6 +54,13 @@ const findOptions = async (id) => {
   );
   return res;
 };
+const findOptionsNoAnswer = async (id) => {
+  const res = await executeQuery(
+    "SELECT id,option_text FROM question_answer_options WHERE question_id=$1 ",
+    id,
+  );
+  return res;
+};
 const deleteOption = async (id) => {
   await executeQuery(
     "DELETE FROM question_answers WHERE question_answer_option_id=$1 ",
@@ -100,6 +107,7 @@ export {
   deleteQuestion,
   findAnswer,
   findOptions,
+  findOptionsNoAnswer,
   findQuestion,
   findQuestions,
   getCorrect,

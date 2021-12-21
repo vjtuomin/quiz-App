@@ -13,8 +13,9 @@ config.database = { hostname: database: user: password: port: };
 
    4. Open browser and go to http://localhost:7777/
 
-Running the tests:
+Running the tests: Change id:s in the tests in to match id:s in your own
+database
 
-deno test --allow-net --allow-read --unstable
+Run the tests: deno test --allow-net --allow-read --unstable
 
 Address: https://quiz-appvt.herokuapp.com/
