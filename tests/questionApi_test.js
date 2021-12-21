@@ -29,7 +29,7 @@ Deno.test({
   async fn() {
     const testClient = await superoak(app);
     await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 79 })
+      .send({ questionId: 55, optionId: 79 })
       .expect(200)
       .expect("Content-Type", new RegExp("application/json"));
   },
@@ -42,7 +42,7 @@ Deno.test({
   async fn() {
     const testClient = await superoak(app);
     const response = await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 79 })
+      .send({ questionId: 55, optionId: 84 })
       .expect(200)
       .expect("Content-Type", new RegExp("application/json"));
     const value = response.body;
@@ -57,7 +57,7 @@ Deno.test({
   async fn() {
     const testClient = await superoak(app);
     const response = await testClient.post("/api/questions/answer")
-      .send({ questionId: 50, optionId: 81 })
+      .send({ questionId: 55, optionId: 85 })
       .expect(200)
       .expect("Content-Type", new RegExp("application/json"));
     const value = response.body;
