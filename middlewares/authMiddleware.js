@@ -1,3 +1,4 @@
+//paths on for authenticated users
 const restrictedPaths = ["/questions", "/quiz", "/statistics"];
 
 const authMiddleware = async (context, next) => {

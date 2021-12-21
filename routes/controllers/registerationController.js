@@ -23,9 +23,12 @@ const getData = async (request) => {
 };
 
 const registerUser = async ({ request, response, render }) => {
+  //get user input
   const data = await getData(request);
+  //validate
   const [passes, errors] = await validasaur.validate(data, validationRules);
   const user = await userService.findUserByEmail(data.email);
+  //checks if there is a user with same email already
   if (user.length != 0) {
     data.validationErrors = {
       email: { used: "Email already in use" },

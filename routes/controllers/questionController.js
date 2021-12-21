@@ -1,14 +1,19 @@
 import * as questionService from "../../services/questionService.js";
 import { validasaur } from "../../deps.js";
-
+/**
+ * validation rules for questions
+ */
 const qValidationRules = {
   title: [validasaur.required, validasaur.minLength(1)],
   question: [validasaur.required, validasaur.minLength(1)],
 };
-
+/**
+ * validation rules for answer options
+ */
 const oValidationRules = {
   optionText: [validasaur.required, validasaur.minLength(1)],
 };
+
 const getQuestionData = async (request) => {
   const data = {
     title: "",
@@ -24,6 +29,7 @@ const getQuestionData = async (request) => {
   }
   return data;
 };
+
 const getOptionData = async (request) => {
   const data = {
     optionText: "",
@@ -41,16 +47,19 @@ const getOptionData = async (request) => {
   }
   return data;
 };
-
+/**
+ * validates the question and add it to the datbase
+ */
 const addQuestion = async ({ request, response, render, user }) => {
   const data = await getQuestionData(request);
+  //validation
   const [passes, errors] = await validasaur.validate(
     data,
     qValidationRules,
   );
   if (!passes) {
     console.log(errors);
-
+    //shows the validation errors to the user
     render("questions.eta", {
       title: data.title,
       question: data.question,
@@ -67,11 +76,13 @@ const addQuestion = async ({ request, response, render, user }) => {
     response.redirect("/questions");
   }
 };
-
+/**
+ * validates the answer option and adds it to the datbase
+ */
 const addOption = async ({ params, request, response, render, user }) => {
   const id = params.id;
   const data = await getOptionData(request);
-
+  //validation
   const [passes, errors] = await validasaur.validate(
     data,
     oValidationRules,
@@ -80,6 +91,7 @@ const addOption = async ({ params, request, response, render, user }) => {
     console.log(errors);
     const res = await questionService.findQuestion(user.id, id);
     const options = await questionService.findOptions(id);
+    //shows the validation errors to the user
     render("question.eta", {
       question: res.rows[0],
       options: options.rows,
@@ -96,11 +108,19 @@ const addOption = async ({ params, request, response, render, user }) => {
   }
 };
 
+/**
+ * shows all questions created by the user
+ * @param user
+ */
 const showQuestions = async ({ render, user }) => {
   const res = await questionService.findQuestions(user.id);
 
   render("questions.eta", { questions: res });
 };
+
+/**
+ * Shows question and its answer options
+ */
 const showQuestion = async ({ params, render, user }) => {
   const id = params.id;
 
@@ -136,14 +156,25 @@ const getQuestion = async ({ params, render }) => {
 
   render("quiz.eta", data);
 };
+
+/**
+ * redirects to random question from DB
+ */
 const randomQuestion = async ({ response }) => {
   const obj = await questionService.randomId();
   const id = obj.id;
   response.redirect(`/quiz/${id}`);
 };
+
+/**
+ * gets the correct answer and compares it to the users answer
+ * also adds the users answer to DB
+ */
 const getAnswer = async ({ params, response, user }) => {
+  //gets the correct answer for question
   const obj = await questionService.getCorrect(params.questionid);
   const correct = obj.option_text;
+  //gets users answer options details from db, not necessary atm
   const res = await questionService.findAnswer(params.optionId);
   const answer = res.option_text;
   if (answer == correct) {
@@ -160,6 +191,7 @@ const showCorrect = ({ render }) => {
 };
 
 const showIncorrect = async ({ params, render }) => {
+  //gets the correct answer to show user
   const obj = await questionService.getCorrect(params.id);
   const correct = obj.option_text;
   const data = {

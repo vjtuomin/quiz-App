@@ -1,5 +1,7 @@
 import * as questionService from "../../services/questionService.js";
-
+/**
+ * returns a random question in JSON format
+ */
 const randomQuestion = async ({ response }) => {
   const obj = await questionService.randomId();
   if (obj != null) {
@@ -7,7 +9,7 @@ const randomQuestion = async ({ response }) => {
     const res = await questionService.getQuestion(id);
     const res2 = await questionService.findOptionsNoAnswer(id);
     const question = res.rows[0];
-
+    //for the course environment tests, could be done better
     const options = [];
     for (let i = 0; i < res2.rows.length; i++) {
       const x = {
@@ -30,6 +32,9 @@ const randomQuestion = async ({ response }) => {
   }
 };
 
+/**
+ * returns JSON of whether the answer posted was correct
+ */
 const getAnswer = async ({ request, response }) => {
   const body = request.body({ type: "json" });
   const params = await body.value;
