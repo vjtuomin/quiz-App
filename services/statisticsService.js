@@ -17,7 +17,7 @@ const findUsersAnswers = async (id) => {
     `SELECT users.email as email, count(*) as count FROM users
         JOIN question_answers ON users.id = $1
         GROUP BY users.email
-        ORDER BY count `,
+        ORDER BY count DESC `,
     id,
   );
 

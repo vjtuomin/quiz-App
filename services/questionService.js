@@ -108,6 +108,11 @@ const randomId = async () => {
   );
   return res.rows[0];
 };
+/**
+ * 
+ * @param id question id
+ * @returns the correct answer to the question
+ */
 const getCorrect = async (id) => {
   const res = await executeQuery(
     "SELECT * FROM question_answer_options WHERE question_id=$1 AND is_correct=true ",
@@ -115,6 +120,8 @@ const getCorrect = async (id) => {
   );
   return res.rows[0];
 };
+
+
 const findAnswer = async (id) => {
   const res = await executeQuery(
     "SELECT * FROM question_answer_options WHERE id=$1",
