@@ -5,7 +5,7 @@ const findFiveUsersWithMostAnswers = async () => {
     `SELECT users.email as email, count(*) as count FROM users
     JOIN question_answers ON users.id = question_answers.user_id
     GROUP BY users.email
-    ORDER BY count
+    ORDER BY count DESC
     LIMIT 5`,
   );
 
@@ -17,7 +17,7 @@ const findUsersAnswers = async (id) => {
     `SELECT users.email as email, count(*) as count FROM users
         JOIN question_answers ON users.id = $1
         GROUP BY users.email
-        ORDER BY count DESC `,
+        ORDER BY count `,
     id,
   );
 
